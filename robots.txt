@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://way-cfg.github.io/waylinks/sitemap.xml

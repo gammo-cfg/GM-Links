@@ -1,0 +1,17 @@
+{
+  "name": "GAMMO — Signal Hub",
+  "short_name": "GAMMO",
+  "description": "GAMMO's code, videos and live channels in one place.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "assets/gammo-icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

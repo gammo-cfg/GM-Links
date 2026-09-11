@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GAMMO — code, videos, streams and live channels in one place.">
+  <meta name="theme-color" content="#050505">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="canonical" href="https://way-cfg.github.io/waylinks/">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/235174542?v=4">
+  <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/235174542?v=4">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="GAMMO — Signal Hub">
+  <meta property="og:description" content="Code. Create. Stream. Repeat. Find GAMMO across GitHub, YouTube, Twitch and Kick.">
+  <meta property="og:url" content="https://way-cfg.github.io/waylinks/">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="https://way-cfg.github.io/waylinks/assets/gammo-social.jpg">
+  <meta property="og:image:alt" content="GAMMO signal hub artwork">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GAMMO — Signal Hub">
+  <meta name="twitter:description" content="Code. Create. Stream. Repeat. Find GAMMO everywhere.">
+  <meta name="twitter:image" content="https://way-cfg.github.io/waylinks/assets/gammo-social.jpg">
+
+  <title>GAMMO — Signal Hub</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "GAMMO",
+    "url": "https://way-cfg.github.io/waylinks/",
+    "image": "https://avatars.githubusercontent.com/u/235174542?v=4",
+    "sameAs": [
+      "https://github.com/Way-cfg",
+      "https://www.youtube.com/@GAAMMOO",
+      "https://www.twitch.tv/gaammoo",
+      "https://kick.com/gaammoo"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#channels">Skip to channels</a>
+
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot__frame">
+      <span>GAMMO / SIGNAL</span>
+      <strong>CONNECTING</strong>
+      <div class="boot__bar"><i></i></div>
+    </div>
+  </div>
+
+  <canvas id="signal-canvas" aria-hidden="true"></canvas>
+  <div class="scene" aria-hidden="true">
+    <div class="scene__grid"></div>
+    <div class="scene__scan"></div>
+    <div class="scene__noise"></div>
+    <div class="scene__vignette"></div>
+  </div>
+
+  <div class="layout-grid" id="layout-grid" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+
+  <div class="cursor-orbit" id="cursor-orbit" aria-hidden="true">
+    <span>OPEN</span>
+  </div>
+
+  <main class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="GAMMO home">
+        <span class="brand__mark"><img src="https://avatars.githubusercontent.com/u/235174542?v=4" alt="" aria-hidden="true"></span>
+        <span class="brand__copy">
+          <strong>GAMMO</strong>
+          <small>SIGNAL HUB / 001</small>
+        </span>
+      </a>
+
+      <div class="topbar__status" aria-label="Website status">
+        <span class="status-led" aria-hidden="true"></span>
+        <span>ONLINE</span>
+        <span class="status-separator">/</span>
+        <span>04 CHANNELS</span>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="utility-button" id="grid-toggle" type="button" aria-pressed="false" aria-label="Toggle design grid">
+          <span>GRID</span><kbd>G</kbd>
+        </button>
+        <button class="utility-button" id="motion-toggle" type="button" aria-pressed="false" aria-label="Toggle motion">
+          <span id="motion-label">MOTION</span><kbd>M</kbd>
+        </button>
+        <div class="audio-control" id="audio-control">
+          <button class="utility-button utility-button--audio" id="audio-toggle" type="button" aria-expanded="false" aria-controls="audio-panel" aria-label="Background music controls">
+            <span id="audio-label">SOUND</span><kbd id="audio-value">20%</kbd>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v6h4l5 4V5L9 9H5Z"/><path d="M17 9.2a4 4 0 0 1 0 5.6M19.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+          </button>
+          <div class="audio-panel" id="audio-panel" role="group" aria-label="Background music volume" hidden>
+            <div class="audio-panel__head">
+              <span>BACKGROUND AUDIO</span>
+              <button class="audio-panel__mute" id="audio-mute" type="button" aria-pressed="false">MUTE</button>
+            </div>
+            <div class="audio-panel__meter">
+              <input id="audio-volume" type="range" min="0" max="100" step="1" value="20" aria-label="Background music volume">
+              <output id="audio-output" for="audio-volume">20%</output>
+            </div>
+            <span class="audio-panel__track">LOOP / BACKGROUND SIGNAL</span>
+          </div>
+        </div>
+        <button class="utility-button utility-button--share" id="share-button" type="button" aria-label="Share GAMMO's links">
+          <span id="share-label">SHARE</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__meta hero__meta--left" aria-hidden="true">
+        <span>PLAYER // GAMMO</span>
+        <span>CHANNEL // PUBLIC</span>
+        <span>STATUS // ACTIVE</span>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow"><span>NO TEMPLATE</span><i></i><span>JUST SIGNAL</span></p>
+
+        <h1 class="hero__title" id="hero-title" data-text="GAMMO">
+          <span>G</span><span>A</span><span>M</span><span>M</span><span>O</span>
+        </h1>
+
+        <div class="hero__lower">
+          <p class="hero__statement">CODE <b>/</b> CREATE <b>/</b> STREAM <b>/</b> REPEAT.</p>
+          <p class="hero__intro">One identity. Four exits. Pick a signal and enter.</p>
+        </div>
+      </div>
+
+      <div class="signal-core" id="signal-core" aria-hidden="true">
+        <div class="signal-core__halo signal-core__halo--a"></div>
+        <div class="signal-core__halo signal-core__halo--b"></div>
+        <div class="signal-core__orbit signal-core__orbit--outer">
+          <span>CODE</span><span>PLAY</span><span>LIVE</span><span>MAKE</span>
+        </div>
+        <div class="signal-core__orbit signal-core__orbit--inner"></div>
+        <div class="signal-core__disc">
+          <span><img src="https://avatars.githubusercontent.com/u/235174542?v=4" alt="" aria-hidden="true"></span>
+          <small>001</small>
+        </div>
+      </div>
+
+      <a class="hero__jump" href="#channels">
+        <span>CHOOSE A CHANNEL</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </a>
+
+      <div class="hero__meta hero__meta--right" aria-hidden="true">
+        <span>ORIGIN // WEB</span>
+        <span>MODE // OPEN</span>
+        <span id="local-clock">00:00:00</span>
+      </div>
+    </section>
+
+    <section class="channels" id="channels" aria-labelledby="channels-title">
+      <div class="channels__header">
+        <p>EXTERNAL / CHANNELS</p>
+        <h2 id="channels-title">ENTER THE NETWORK</h2>
+        <span>04 ACTIVE SIGNALS</span>
+      </div>
+
+      <nav class="channel-list" aria-label="GAMMO's social links">
+        <a class="channel channel--github" data-accent="#f1f1f1" href="https://github.com/Way-cfg" target="_blank" rel="noopener noreferrer">
+          <span class="channel__index">01</span>
+          <span class="channel__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.09.68-.22.68-.49v-1.74c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1.01.07 1.54 1.06 1.54 1.06.9 1.58 2.36 1.13 2.94.86.09-.67.35-1.13.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.05 1.03-2.77-.1-.27-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05A9.2 9.2 0 0 1 12 6.67c.85 0 1.7.12 2.5.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.73.64.72 1.03 1.65 1.03 2.77 0 3.93-2.34 4.8-4.57 5.06.36.32.68.95.68 1.93v2.85c0 .28.18.6.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+          </span>
+          <span class="channel__title">GITHUB</span>
+          <span class="channel__detail"><small>CODE / PROJECTS</small><strong>GAMMO / CODE</strong></span>
+          <span class="channel__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20 20 4M8 4h12v12"/></svg></span>
+          <span class="channel__ghost" aria-hidden="true">GITHUB</span>
+        </a>
+
+        <a class="channel channel--youtube" data-accent="#ff0033" href="https://www.youtube.com/@GAAMMOO" target="_blank" rel="noopener noreferrer">
+          <span class="channel__index">02</span>
+          <span class="channel__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21.4 6.5a2.9 2.9 0 0 0-2-2C17.65 4 12 4 12 4s-5.65 0-7.4.5a2.9 2.9 0 0 0-2 2A29.5 29.5 0 0 0 2.1 12a29.5 29.5 0 0 0 .5 5.5 2.9 2.9 0 0 0 2 2C6.35 20 12 20 12 20s5.65 0 7.4-.5a2.9 2.9 0 0 0 2-2 29.5 29.5 0 0 0 .5-5.5 29.5 29.5 0 0 0-.5-5.5Z"/><path d="m10 8.8 5.5 3.2-5.5 3.2Z" class="channel__icon-cut"/></svg>
+          </span>
+          <span class="channel__title">YOUTUBE</span>
+          <span class="channel__detail"><small>VIDEOS / BUILDS</small><strong>@GAAMMOO</strong></span>
+          <span class="channel__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20 20 4M8 4h12v12"/></svg></span>
+          <span class="channel__ghost" aria-hidden="true">YOUTUBE</span>
+        </a>
+
+        <a class="channel channel--twitch" data-accent="#9146ff" href="https://www.twitch.tv/gaammoo" target="_blank" rel="noopener noreferrer">
+          <span class="channel__index">03</span>
+          <span class="channel__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 3h17v12l-5 5h-4l-3 3v-3H4V3Z"/><path d="M10 8v5M15 8v5" class="channel__icon-stroke"/></svg>
+          </span>
+          <span class="channel__title">TWITCH</span>
+          <span class="channel__detail"><small>LIVE / STREAMS</small><strong>@gaammoo</strong></span>
+          <span class="channel__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20 20 4M8 4h12v12"/></svg></span>
+          <span class="channel__ghost" aria-hidden="true">TWITCH</span>
+        </a>
+
+        <a class="channel channel--kick" data-accent="#53fc18" href="https://kick.com/gaammoo" target="_blank" rel="noopener noreferrer">
+          <span class="channel__index">04</span>
+          <span class="channel__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 4h6v6l4-6h6l-6 8 6 8h-6l-4-6v6H4V4Z"/></svg>
+          </span>
+          <span class="channel__title">KICK</span>
+          <span class="channel__detail"><small>LIVE / COMMUNITY</small><strong>@gaammoo</strong></span>
+          <span class="channel__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20 20 4M8 4h12v12"/></svg></span>
+          <span class="channel__ghost" aria-hidden="true">KICK</span>
+        </a>
+      </nav>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <strong>GAMMO</strong>
+        <span>© <span id="current-year">2026</span></span>
+      </div>
+      <p>THE INTERNET IS LOUD. MAKE YOUR SIGNAL CLEAR.</p>
+      <a href="#top">BACK TO TOP ↑</a>
+    </footer>
+  </main>
+
+  <audio id="background-audio" src="assets/background-music.mp3" loop preload="metadata"></audio>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
